@@ -1,7 +1,10 @@
-package jobservice.controller;
+package com.jobservice.controller;
 
-import jobservice.model.Job;
-import jobservice.service.JobService;
+import jakarta.validation.Valid;
+import com.jobservice.dto.JobRequestDTO;
+import com.jobservice.dto.JobResponseDTO;
+import com.models.Job;
+import com.jobservice.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +20,14 @@ public class JobController {
     private JobService jobService;
 
     @PostMapping("/createJob")
-    public ResponseEntity<Job> createJob(@RequestBody Job job) {
+    public ResponseEntity<JobResponseDTO> createJob(@Valid @RequestBody JobRequestDTO job) {
         Job savedJob = jobService.createJob(job);
-        return ResponseEntity.ok(savedJob);
+
+        JobResponseDTO dto = new JobResponseDTO();
+        dto.setCompany(savedJob.getCompany());
+        dto.setTitle(savedJob.getTitle());
+
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping("/jobs")

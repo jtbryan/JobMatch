@@ -1,6 +1,6 @@
-package jobservice.repository;
+package com.jobservice.repository;
 
-import jobservice.model.Job;
+import com.models.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

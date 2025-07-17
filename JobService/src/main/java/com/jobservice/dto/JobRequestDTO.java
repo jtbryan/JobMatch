@@ -1,37 +1,26 @@
-package jobservice.model;
+package com.jobservice.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-public class Job {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class JobRequestDTO {
+    @NotBlank(message="Job title is required.")
     private String title;
+
+    @NotBlank(message="Company name is required.")
     private String company;
+
     private String lowBand;
     private String highBand;
     private String location;
 
-    public Job() {}
+    public JobRequestDTO() {}
 
-    public Job(Long id, String title, String company, String lowBand, String highBand, String location) {
-        this.id = id;
+    public JobRequestDTO(String title, String company, String lowBand, String highBand, String location) {
         this.title = title;
         this.company = company;
         this.lowBand = lowBand;
         this.highBand = highBand;
         this.location = location;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -50,20 +39,20 @@ public class Job {
         this.company = company;
     }
 
-    public String getHighBand() {
-        return highBand;
-    }
-
-    public void setHighBand(String highBand) {
-        this.highBand = highBand;
-    }
-
     public String getLowBand() {
         return lowBand;
     }
 
     public void setLowBand(String lowBand) {
         this.lowBand = lowBand;
+    }
+
+    public String getHighBand() {
+        return highBand;
+    }
+
+    public void setHighBand(String highBand) {
+        this.highBand = highBand;
     }
 
     public String getLocation() {
